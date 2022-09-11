@@ -6,20 +6,22 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class BTest  {
-    B sut; //System Under Testing
+   static B sut; //System Under Testing сделал сатитческим чтобы закинуть в BeforeAll
 
     @BeforeEach
     public void init () {
         System.out.println("=>Тестирование<=");
-        sut = new B();
+
     }
 
+    // Ваша обратка "Не имеет смысла создавать перед каждым тестом новый объект B. Лучше перенести в @Before All"
+    //но в вебинаре у Григория (sut = new Calculator) была в @BeforeEach
     @BeforeAll
     public static void started () {
         System.out.println("-Начинаем тестировать-");
+        sut = new B();
     }
 
     @AfterEach
